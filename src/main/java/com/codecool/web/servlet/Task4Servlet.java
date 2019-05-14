@@ -18,6 +18,7 @@ import java.util.List;
 
 @WebServlet("/task4")
 public class Task4Servlet extends AbstractServlet {
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try (Connection connection = getConnection(req.getServletContext())) {
@@ -33,6 +34,7 @@ public class Task4Servlet extends AbstractServlet {
         req.getRequestDispatcher("task-4.jsp").forward(req, resp);
     }
 
+    @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try (Connection connection = getConnection(req.getServletContext())) {
             Task4Dao task4Dao = new DatabaseTask4Dao(connection);
