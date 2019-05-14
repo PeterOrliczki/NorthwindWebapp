@@ -10,5 +10,4 @@ public interface Task1Dao {
     List<Task1> task1() throws SQLException;
 
     List<Task1> task1WithSearching(String company) throws SQLException;
-
 }

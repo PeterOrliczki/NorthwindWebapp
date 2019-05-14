@@ -13,7 +13,7 @@
         <a href="task4"><li>Task 4</li></a>
         <a href="task5"><li>Task 5</li></a>
         <br>
-        <a href="">Task 1 results</a>
+        <p> Task 1 results </p>
         <br>
         <c:choose>
           <c:when test="${fn:length(task1) == 0}">
