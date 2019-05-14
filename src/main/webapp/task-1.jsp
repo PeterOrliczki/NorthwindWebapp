@@ -22,14 +22,14 @@
           <c:otherwise>
                 <table>
                     <tr>
-                        <td>Product</td>
                         <td>Company</td>
+                        <td>Product</td>
                     </tr>
                     <br>
                     <c:forEach var="task" items="${task1}">
                         <tr>
-                            <td><c:out value="${task.product}"/></td>
                             <td><c:out value="${task.company}"/></td>
+                            <td><c:out value="${task.product}"/></td>
                         </tr>
                     </c:forEach>
                 </table>

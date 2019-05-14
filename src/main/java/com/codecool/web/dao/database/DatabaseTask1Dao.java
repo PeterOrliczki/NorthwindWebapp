@@ -16,7 +16,7 @@ public final class DatabaseTask1Dao extends AbstractDao implements Task1Dao {
     @Override
     public List<Task1> task1() throws SQLException {
         List<Task1> task1Results = new ArrayList<>();
-        String sql = "SELECT product_name AS Product, company_name AS Company FROM products INNER JOIN suppliers ON products.supplier_id = suppliers.supplier_id ORDER BY Product;";
+        String sql = "SELECT company_name AS Company, product_name AS Product FROM products INNER JOIN suppliers ON products.supplier_id = suppliers.supplier_id ORDER BY Product;";
         try (Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery(sql)) {
             while (resultSet.next()) {
@@ -29,7 +29,7 @@ public final class DatabaseTask1Dao extends AbstractDao implements Task1Dao {
     @Override
     public List<Task1> task1WithSearching(String company) throws SQLException {
         List<Task1> task1Results = new ArrayList<>();
-        String sql = "SELECT product_name AS Product, company_name AS Company FROM products INNER JOIN suppliers ON products.supplier_id = suppliers.supplier_id WHERE company_name=? ORDER BY Product;";
+        String sql = "SELECT company_name AS Company, product_name AS Product FROM products INNER JOIN suppliers ON products.supplier_id = suppliers.supplier_id WHERE company_name=? ORDER BY Product;";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setString(1, company);
             try (ResultSet resultSet = statement.executeQuery()) {
