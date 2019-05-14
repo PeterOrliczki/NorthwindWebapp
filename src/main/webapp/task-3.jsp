@@ -38,6 +38,6 @@
         <form method="POST" action="task3">
             <input type="text" id="filter" name="filter">
             <input type="submit" value="Filter">
-        <form>
+        </form>
     </body>
 </html>
