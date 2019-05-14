@@ -16,7 +16,7 @@ public final class DatabaseTask5Dao extends AbstractDao implements Task5Dao {
     @Override
     public List<Task5> task5() throws SQLException {
         List<Task5> task5Results = new ArrayList<>();
-        String sql = "SELECT suppliers.company_name, products.product_name, products.unit_price FROM products INNER JOIN suppliers ON suppliers.supplier_id = products.supplier_id JOIN (SELECT products.supplier_id, MAX(products.unit_price) AS max_unit FROM products GROUP BY products.supplier_id) AS try ON products.supplier_id = try.supplier_id AND products.unit_price = try.max_unit ORDER BY unit_price DESC";
+        String sql = "SELECT suppliers.company_name, products.product_name, products.unit_price FROM products INNER JOIN suppliers ON suppliers.supplier_id = products.supplier_id JOIN (SELECT products.supplier_id, MAX(products.unit_price) AS max_unit FROM products GROUP BY products.supplier_id) AS try ON products.supplier_id = try.supplier_id AND products.unit_price = try.max_unit ORDER BY unit_price DESC;";
         try (Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery(sql)) {
             while (resultSet.next()) {
@@ -29,7 +29,7 @@ public final class DatabaseTask5Dao extends AbstractDao implements Task5Dao {
     @Override
     public List<Task5> task5WithSearching(String company) throws SQLException {
         List<Task5> task5Results = new ArrayList<>();
-        String sql = "SELECT suppliers.company_name, products.product_name, products.unit_price FROM products INNER JOIN suppliers on suppliers.supplier_id = products.supplier_id JOIN (SELECT products.supplier_id, MAX(products.unit_price) AS max_unit FROM products GROUP BY products.supplier_id) AS try ON products.supplier_id = try.supplier_id AND products.unit_price = try.max_unit WHERE company_name=? ORDER BY unit_price DESC";
+        String sql = "SELECT suppliers.company_name, products.product_name, products.unit_price FROM products INNER JOIN suppliers on suppliers.supplier_id = products.supplier_id JOIN (SELECT products.supplier_id, MAX(products.unit_price) AS max_unit FROM products GROUP BY products.supplier_id) AS try ON products.supplier_id = try.supplier_id AND products.unit_price = try.max_unit WHERE company_name=? ORDER BY unit_price DESC;";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setString(1, company);
             try (ResultSet resultSet = statement.executeQuery()) {
