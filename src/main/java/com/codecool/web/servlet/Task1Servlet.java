@@ -26,25 +26,28 @@ public class Task1Servlet extends AbstractServlet {
 
             List<Task1> task1 = task1Service.getTask1();
             req.setAttribute("task1", task1);
+
+            req.getRequestDispatcher("task-1.jsp").forward(req, resp);
         } catch (SQLException ex) {
             throw new ServletException(ex);
         }
 
-        req.getRequestDispatcher("task-1.jsp").forward(req, resp);
     }
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try (Connection connection = getConnection(req.getServletContext())) {
             Task1Dao task1Dao = new DatabaseTask1Dao(connection);
             Task1Service taskService = new SimpleTask1Service(task1Dao);
+
             String company = req.getParameter("filter");
+
             List<Task1> task1 = taskService.getTask1WithSearching(company);
             req.setAttribute("task1", task1);
 
+            req.getRequestDispatcher("task-1.jsp").forward(req, resp);
         } catch (SQLException ex) {
             throw new ServletException(ex);
         }
 
-        req.getRequestDispatcher("task-1.jsp").forward(req, resp);
     }
 }

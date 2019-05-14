@@ -1,14 +1,9 @@
 package com.codecool.web.servlet;
 
-import com.codecool.web.dao.Task1Dao;
 import com.codecool.web.dao.Task2Dao;
-import com.codecool.web.dao.database.DatabaseTask1Dao;
 import com.codecool.web.dao.database.DatabaseTask2Dao;
-import com.codecool.web.model.Task1;
 import com.codecool.web.model.Task2;
-import com.codecool.web.service.Task1Service;
 import com.codecool.web.service.Task2Service;
-import com.codecool.web.service.simple.SimpleTask1Service;
 import com.codecool.web.service.simple.SimpleTask2Service;
 
 import javax.servlet.ServletException;
@@ -31,25 +26,27 @@ public class Task2Servlet extends AbstractServlet {
 
             List<Task2> task2 = task2Service.getTask2();
             req.setAttribute("task2", task2);
+
+            req.getRequestDispatcher("task-2.jsp").forward(req, resp);
         } catch (SQLException ex) {
             throw new ServletException(ex);
         }
 
-        req.getRequestDispatcher("task-2.jsp").forward(req, resp);
     }
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try (Connection connection = getConnection(req.getServletContext())) {
             Task2Dao task2Dao = new DatabaseTask2Dao(connection);
             Task2Service taskService = new SimpleTask2Service(task2Dao);
+
             String company = req.getParameter("filter");
             List<Task2> task2 = taskService.getTask2WithSearching(company);
             req.setAttribute("task2", task2);
 
+            req.getRequestDispatcher("task-2.jsp").forward(req, resp);
         } catch (SQLException ex) {
             throw new ServletException(ex);
         }
 
-        req.getRequestDispatcher("task-2.jsp").forward(req, resp);
     }
 }

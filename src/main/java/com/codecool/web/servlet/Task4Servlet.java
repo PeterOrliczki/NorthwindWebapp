@@ -37,14 +37,15 @@ public class Task4Servlet extends AbstractServlet {
         try (Connection connection = getConnection(req.getServletContext())) {
             Task4Dao task4Dao = new DatabaseTask4Dao(connection);
             Task4Service taskService = new SimpleTask4Service(task4Dao);
+
             String company = req.getParameter("filter");
             List<Task4> task4 = taskService.getTask4WithSearching(company);
             req.setAttribute("task4", task4);
 
+            req.getRequestDispatcher("task-4.jsp").forward(req, resp);
         } catch (SQLException ex) {
             throw new ServletException(ex);
         }
 
-        req.getRequestDispatcher("task-4.jsp").forward(req, resp);
     }
 }
