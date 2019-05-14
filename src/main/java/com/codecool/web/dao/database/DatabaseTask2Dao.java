@@ -1,8 +1,6 @@
 package com.codecool.web.dao.database;
 
-import com.codecool.web.dao.Task1Dao;
 import com.codecool.web.dao.Task2Dao;
-import com.codecool.web.model.Task1;
 import com.codecool.web.model.Task2;
 
 import java.sql.*;
@@ -18,7 +16,7 @@ public final class DatabaseTask2Dao extends AbstractDao implements Task2Dao {
     @Override
     public List<Task2> task2() throws SQLException {
         List<Task2> task2Results = new ArrayList<>();
-        String sql = "SELECT company_name AS company, COUNT(product_name) as product_amount from products JOIN suppliers on products.supplier_id = suppliers.supplier_id GROUP BY suppliers.company_name ORDER BY product_amount DESC, company";
+        String sql = "SELECT company_name AS Company, COUNT(product_name) as product_amount from products JOIN suppliers on products.supplier_id = suppliers.supplier_id GROUP BY suppliers.company_name ORDER BY product_amount DESC, Company";
         try (Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery(sql)) {
             while (resultSet.next()) {
@@ -31,7 +29,7 @@ public final class DatabaseTask2Dao extends AbstractDao implements Task2Dao {
     @Override
     public List<Task2> task2WithSearching(String company) throws SQLException {
         List<Task2> task2Results = new ArrayList<>();
-        String sql = "SELECT company_name AS company, COUNT(product_name) as product_amount from products JOIN suppliers on products.supplier_id = suppliers.supplier_id WHERE company_name=? GROUP BY suppliers.company_name ORDER BY product_amount DESC, company";
+        String sql = "SELECT company_name AS Company, COUNT(product_name) as product_amount from products JOIN suppliers on products.supplier_id = suppliers.supplier_id WHERE company_name=? GROUP BY suppliers.company_name ORDER BY product_amount DESC, Company";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setString(1, company);
             try (ResultSet resultSet = statement.executeQuery()) {
