@@ -1,9 +1,7 @@
 package com.codecool.web.service.simple;
 
 import com.codecool.web.dao.Task2Dao;
-import com.codecool.web.model.Task1;
 import com.codecool.web.model.Task2;
-import com.codecool.web.service.Task1Service;
 import com.codecool.web.service.Task2Service;
 
 import java.sql.SQLException;
