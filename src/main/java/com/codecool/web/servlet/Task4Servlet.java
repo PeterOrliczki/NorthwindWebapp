@@ -27,11 +27,11 @@ public class Task4Servlet extends AbstractServlet {
 
             List<Task4> task4 = task4Service.getTask4();
             req.setAttribute("task4", task4);
-        } catch (SQLException ex) {
-            throw new ServletException(ex);
-        }
 
-        req.getRequestDispatcher("task-4.jsp").forward(req, resp);
+            req.getRequestDispatcher("task-4.jsp").forward(req, resp);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
     }
 
     @Override
@@ -46,7 +46,7 @@ public class Task4Servlet extends AbstractServlet {
 
             req.getRequestDispatcher("task-4.jsp").forward(req, resp);
         } catch (SQLException ex) {
-            throw new ServletException(ex);
+            ex.printStackTrace();
         }
 
     }

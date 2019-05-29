@@ -30,7 +30,7 @@ public class Task1Servlet extends AbstractServlet {
 
             req.getRequestDispatcher("task-1.jsp").forward(req, resp);
         } catch (SQLException ex) {
-            throw new ServletException(ex);
+            ex.printStackTrace();
         }
 
     }
@@ -48,7 +48,7 @@ public class Task1Servlet extends AbstractServlet {
 
             req.getRequestDispatcher("task-1.jsp").forward(req, resp);
         } catch (SQLException ex) {
-            throw new ServletException(ex);
+            ex.printStackTrace();
         }
 
     }
